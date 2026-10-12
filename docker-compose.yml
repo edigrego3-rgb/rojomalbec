@@ -50,6 +50,24 @@ services:
     networks:
       - rojomalbec_net
 
+  caddy:
+    image: caddy:2-alpine
+    container_name: rojomalbec_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - rojomalbec_net
+
+volumes:
+  caddy_data:
+  caddy_config:
+
 networks:
   rojomalbec_net:
     driver: bridge
