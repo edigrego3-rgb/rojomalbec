@@ -1,0 +1,66 @@
+# ==========================================
+# ESCUDO DE SEGURIDAD ROJO MALBEC - MONOREPO
+# NUNCA SUBIR CLAVES, TOML, JSON O SECRETOS
+# ==========================================
+
+# Secretos y credenciales de Streamlit
+secrets.toml
+*/secrets.toml
+**/.streamlit/secrets.toml
+**/.streamlit/*.toml
+.streamlit/
+
+# Carpetas de claves de servicio de Google / API
+claves/
+*/claves/
+**/claves/
+
+# Archivos de configuracion y credenciales JSON
+*.json
+*/*.json
+**/*.json
+
+# Variables de entorno
+.env
+.env.*
+*.env
+
+# Certificados y llaves privadas
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+
+# Python cache y entornos virtuales
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+*/.venv/
+venv/
+*/venv/
+env/
+*/env/
+
+# Datos temporales, logs y backups locales
+*.log
+*.csv
+*.tsv
+*.sqlite
+*.sqlite3
+*.db
+backup/
+*/backup/
+**/backup/
+*.bak
+*.old
+*.tmp
+
+# Archivos del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*

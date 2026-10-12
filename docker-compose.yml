@@ -1,0 +1,55 @@
+services:
+  erp:
+    build:
+      context: ./apps/erp
+      dockerfile: Dockerfile
+    container_name: rojomalbec_erp
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./apps/erp/.streamlit:/app/.streamlit:ro
+      - ./claves:/app/claves:ro
+    networks:
+      - rojomalbec_net
+
+  distribuidor:
+    build:
+      context: ./apps/distribuidor
+      dockerfile: Dockerfile
+    container_name: rojomalbec_distribuidor
+    restart: unless-stopped
+    ports:
+      - "8502:8502"
+    environment:
+      - STREAMLIT_SERVER_PORT=8502
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./apps/distribuidor/.streamlit:/app/.streamlit:ro
+      - ./claves:/app/claves:ro
+    networks:
+      - rojomalbec_net
+
+  preventa:
+    build:
+      context: ./apps/preventa
+      dockerfile: Dockerfile
+    container_name: rojomalbec_preventa
+    restart: unless-stopped
+    ports:
+      - "8503:8503"
+    environment:
+      - STREAMLIT_SERVER_PORT=8503
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./apps/preventa/.streamlit:/app/.streamlit:ro
+      - ./claves:/app/claves:ro
+    networks:
+      - rojomalbec_net
+
+networks:
+  rojomalbec_net:
+    driver: bridge

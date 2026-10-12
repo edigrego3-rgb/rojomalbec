@@ -1,0 +1,29 @@
+# Caddyfile para Rojo Malbec - VPS Hetzner Cloud
+# Manejo automático de certificados SSL (HTTPS) y proxy reverso con soporte para WebSockets de Streamlit
+
+erp.rojomalbec.com.ar {
+    reverse_proxy erp:8501 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+b2b.rojomalbec.com.ar {
+    reverse_proxy distribuidor:8502 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+preventa.rojomalbec.com.ar {
+    reverse_proxy preventa:8503 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}

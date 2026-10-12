@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>POS Rojo Malbec Pro</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#111111">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>🍷 Rojo Malbec</h1>
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="chk-socio" checked>
+                <span class="slider round"></span>
+            </label>
+            <span id="lbl-socio">Con Socio</span>
+        </div>
+    </header>
+
+    <!-- VIEWS -->
+    <main>
+        <!-- VISTA: VENDER (CARRITO) -->
+        <section id="view-vender" class="view active">
+            <div class="top-actions">
+                <button id="btn-manual" class="action-btn">➕ Agregar a mano</button>
+                <button id="btn-crear-combo" class="action-btn outline">🎁 Armar Combo</button>
+            </div>
+            
+            <div id="reader" style="display:none; margin-top:10px;"></div>
+
+            <div id="cart-container">
+                <div class="empty-state" id="empty-cart">El carrito está vacío</div>
+                <ul id="cart-list"></ul>
+            </div>
+            
+            <div class="cart-total-bar">
+                <span>TOTAL VENTA:</span>
+                <strong id="tot-vendido">$ 0</strong>
+            </div>
+        </section>
+
+        <!-- VISTA: CATÁLOGO -->
+        <section id="view-catalogo" class="view">
+            <h2 style="color:#d4af37; margin-bottom:15px;">Lista de Productos</h2>
+            <div id="catalogo-list"></div>
+        </section>
+
+        <!-- VISTA: CIERRE -->
+        <section id="view-cierre" class="view">
+            <h2 style="color:#d4af37; margin-bottom:15px;">Hoja de Cierre</h2>
+            
+            <div class="card">
+                <h3 style="margin-bottom:10px;">1. Gastos del Evento</h3>
+                <label>Tus Gastos (Espacio, Insumos):</label>
+                <input type="number" id="gastos-edu" value="0" class="large-input">
+                <label style="margin-top:10px; display:block;">Gastos Socio (Nafta, Peajes):</label>
+                <input type="number" id="gastos-alb" value="0" class="large-input">
+            </div>
+
+            <button id="btn-calcular-cierre" class="primary-btn" style="margin:15px 0;">Calcular Reparto</button>
+
+            <div id="reporte-final" style="display:none;">
+                <div class="card ticket">
+                    <h3 style="text-align:center; color:#d4af37; border-bottom:1px dashed #d4af37; padding-bottom:10px;">TICKET DE FIN DE DÍA</h3>
+                    
+                    <div class="resumen-plata">
+                        <p>Total en Efectivo: <strong id="rep-caja">$0</strong></p>
+                        <p>Costo Recuperado: <span id="rep-costos">$0</span></p>
+                        <p>Gastos Recuperados: <span id="rep-gastos">$0</span></p>
+                        <p>Ganancia Neta Pura: <strong style="color:#4CAF50;" id="rep-neta">$0</strong></p>
+                    </div>
+
+                    <div class="reparto-caja">
+                        <h4>Reparto Físico de Billetes</h4>
+                        <div class="split-box">
+                            <span class="name">Eduardo</span>
+                            <span class="amount" id="rep-edu">$0</span>
+                        </div>
+                        <div class="split-box" id="rep-socio-box">
+                            <span class="name">Socio</span>
+                            <span class="amount" id="rep-alb">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="inventario-vendido">
+                        <h4>Detalle de Unidades Vendidas</h4>
+                        <ul id="lista-vendidos"></ul>
+                    </div>
+                </div>
+                
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <button id="btn-whatsapp" class="action-btn outline">📲 Enviar a WhatsApp</button>
+                    <button id="btn-nuevo-dia" class="action-btn">Comenzar Nuevo Día</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FAB (Botón Escanear Flotante) -->
+    <button id="fab-scan">
+        <span class="icon">📷</span>
+    </button>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-target="view-vender">
+            <span class="nav-icon">🛒</span>
+            <span class="nav-label">Vender</span>
+        </button>
+        <button class="nav-item" data-target="view-catalogo">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Catálogo</span>
+        </button>
+        <button class="nav-item" data-target="view-cierre">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Cierre</span>
+        </button>
+    </nav>
+
+    <!-- MODALES -->
+    <div id="modal-precio" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>Modificar Precio</h3>
+            <p id="modal-prod-name" style="margin:10px 0; color:#aaa;"></p>
+            <input type="number" id="input-nuevo-precio" class="large-input" style="font-size:1.5rem; text-align:center;">
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button id="btn-cancel-precio" class="action-btn outline">Cancelar</button>
+                <button id="btn-save-precio" class="action-btn">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-combo" class="modal" style="display:none;">
+        <div class="modal-content" style="max-height:80vh; overflow-y:auto; width:95%;">
+            <h3 style="color:#d4af37;">Armar Combo</h3>
+            <p style="font-size:0.8rem; color:#aaa; margin-bottom:10px;">Elegí los productos que componen el combo:</p>
+            
+            <div id="combo-catalog-list" style="margin-bottom:15px; border:1px solid #333; padding:10px; border-radius:8px; max-height:200px; overflow-y:auto;"></div>
+            
+            <div style="background:#222; padding:10px; border-radius:8px; margin-bottom:15px;">
+                <p><strong>Costo Real:</strong> $<span id="combo-costo">0</span></p>
+                <p><strong>PVP Normal:</strong> $<span id="combo-normal">0</span></p>
+            </div>
+            
+            <label>Precio Promo del Combo Final:</label>
+            <input type="number" id="combo-precio-final" class="large-input" style="font-size:1.5rem; text-align:center;">
+            
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button id="btn-cancel-combo" class="action-btn outline">Cancelar</button>
+                <button id="btn-save-combo" class="action-btn">Agregar Combo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="catalogo.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

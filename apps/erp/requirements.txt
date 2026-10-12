@@ -1,0 +1,7 @@
+streamlit==1.54.0
+pandas==2.3.3
+gspread==6.2.1
+pillow==12.1.1
+python-barcode==0.16.1
+fpdf2==2.8.6
+openpyxl==3.1.5

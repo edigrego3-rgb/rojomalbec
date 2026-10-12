@@ -1,0 +1,26 @@
+# ===== CREDENCIALES: NUNCA A GITHUB =====
+claves/
+.streamlit/secrets.toml
+.streamlit/*.toml
+*.json
+.env
+.env.*
+*.pem
+*.key
+
+# ===== Python =====
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ===== Datos y respaldos locales =====
+backup/
+*.csv
+*.log
+*.zip
+
+# ===== Windows / Office =====
+Thumbs.db
+desktop.ini
+~$*

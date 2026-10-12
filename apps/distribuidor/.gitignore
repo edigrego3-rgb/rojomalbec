@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.log
+_temp_check_b2b/
+_temp_check_dist/
+app_backup.py
+Descripciones_RojoMalbec_ORIGINAL_BACKUP.md
+check_db.py
+test_desc.py
+update.js
+logo.jpg
