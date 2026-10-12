@@ -20,7 +20,53 @@ from views.sincronizacion import render_sincronizacion_tab
 
 st.set_page_config(page_title="Rojo Malbec ERP", page_icon="🌶️", layout="wide")
 styles.apply_styles()
+
+# --- CONTROL DE ACCESO SEGURO ---
+def check_authentication():
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
+
+    if st.session_state.authenticated:
+        return True
+
+    admin_cfg = st.secrets.get("admin_credentials", {})
+    valid_user = admin_cfg.get("username", "eduardo")
+    valid_pass = admin_cfg.get("password", "RojoMalbec2026!Seguro")
+
+    col_izq, col_centro, col_der = st.columns([1, 1.2, 1])
+    with col_centro:
+        st.markdown("<div style='text-align: center; margin-top: 40px;'>", unsafe_allow_html=True)
+        st.markdown("<h2>🌶️ Rojo Malbec ERP</h2>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #666;'>Acceso Restringido y Seguro</p>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        with st.form("login_form", clear_on_submit=False):
+            u_input = st.text_input("Usuario", placeholder="Ingresá tu usuario")
+            p_input = st.text_input("Contraseña", type="password", placeholder="••••••••••••")
+            btn_login = st.form_submit_button("Ingresar al Sistema", use_container_width=True)
+
+            if btn_login:
+                if u_input.strip() == valid_user and p_input.strip() == valid_pass:
+                    st.session_state.authenticated = True
+                    st.success("Acceso concedido.")
+                    st.rerun()
+                else:
+                    st.error("Usuario o contraseña incorrectos.")
+
+    return False
+
+if not check_authentication():
+    st.stop()
+
+# --- CARGA DE DATOS (Solo para usuarios autenticados) ---
 init_data()
+
+# Barra lateral con botón de cierre de sesión
+with st.sidebar:
+    st.markdown("👤 **Sesión Activa:** `eduardo`")
+    if st.button("Cerrar Sesión", use_container_width=True):
+        st.session_state.authenticated = False
+        st.rerun()
 
 # --- ANCLA DE NAVEGACIÓN ---
 # Esto evita que al hacer rerun volvamos al Mostrador
