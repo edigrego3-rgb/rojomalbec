@@ -1,11 +1,61 @@
-﻿let catalogo = typeof catalogo_data !== "undefined" ? catalogo_data : [];
+let catalogo = typeof catalogo_data !== "undefined" ? catalogo_data : [];
 let carrito = [];
 let html5QrcodeScanner = null;
 let currentEditId = null;
 let comboSeleccionados = [];
 
+// SEGURIDAD / AUTENTICACIÓN
+const POS_HASH = "4f8bb08f893b50eb16d4d1a05c62f25e78433ca15e1b307124050639ceef8063";
+
+async function calcularHash(texto) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(texto);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function initSeguridad() {
+    const lockScreen = document.getElementById("lock-screen");
+    const formLogin = document.getElementById("form-login");
+    const inputPass = document.getElementById("input-pos-pass");
+    const loginError = document.getElementById("login-error");
+    const btnLock = document.getElementById("btn-lock");
+
+    // Verificar si ya está autenticado en este celular
+    if (localStorage.getItem("rm_pos_auth") === POS_HASH) {
+        lockScreen.style.display = "none";
+    }
+
+    formLogin.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const clave = inputPass.value;
+        const hash = await calcularHash(clave);
+        if (hash === POS_HASH) {
+            localStorage.setItem("rm_pos_auth", POS_HASH);
+            loginError.style.display = "none";
+            lockScreen.style.display = "none";
+            inputPass.value = "";
+        } else {
+            loginError.style.display = "block";
+            inputPass.focus();
+        }
+    });
+
+    if (btnLock) {
+        btnLock.addEventListener("click", () => {
+            if (confirm("¿Querés bloquear el POS?")) {
+                localStorage.removeItem("rm_pos_auth");
+                lockScreen.style.display = "flex";
+                inputPass.value = "";
+            }
+        });
+    }
+}
+
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
+    initSeguridad();
     renderCatalogo();
     renderCarrito();
     configNavigation();

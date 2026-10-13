@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
     <title>POS Rojo Malbec Pro</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#111111">
@@ -11,9 +12,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- PANTALLA DE ACCESO / BLOQUEO POR CLAVE -->
+    <div id="lock-screen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#0e0e12; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center;">
+        <img src="logo.png" alt="Rojo Malbec" style="width:105px; height:105px; border-radius:50%; margin-bottom:18px; border:2px solid #d4af37;">
+        <h2 style="color:#d4af37; margin-bottom:6px; font-family:'Montserrat',sans-serif; font-size:1.4rem;">Rojo Malbec POS</h2>
+        <p style="color:#aaa; font-size:0.9rem; margin-bottom:22px;">Ingresá tu clave de seguridad para operar</p>
+        <form id="form-login" style="width:100%; max-width:280px;">
+            <input type="password" id="input-pos-pass" placeholder="Ingresá la clave..." autocomplete="current-password" style="width:100%; padding:14px; border-radius:8px; border:1px solid #333; background:#1c1c24; color:#fff; font-size:1.1rem; text-align:center; margin-bottom:15px; outline:none; box-sizing:border-box;">
+            <button type="submit" class="action-btn" style="width:100%; padding:14px; font-size:1rem; font-weight:700; cursor:pointer;">INGRESAR AL POS</button>
+            <p id="login-error" style="color:#ff5555; font-size:0.85rem; margin-top:12px; display:none;">Contraseña incorrecta</p>
+        </form>
+    </div>
+
     <!-- HEADER -->
     <header>
-        <h1>🍷 Rojo Malbec</h1>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <h1 style="margin:0;">🍷 Rojo Malbec</h1>
+            <button id="btn-lock" style="background:none; border:none; color:#888; font-size:1.1rem; cursor:pointer; padding:2px 6px;" title="Bloquear / Salir">🔒</button>
+        </div>
         <div class="toggle-container">
             <label class="switch">
                 <input type="checkbox" id="chk-socio" checked>

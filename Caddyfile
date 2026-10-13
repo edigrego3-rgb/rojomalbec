@@ -2,6 +2,13 @@
 # Manejo automático de certificados SSL (HTTPS) y proxy reverso con soporte para WebSockets de Streamlit
 
 erp.rojomalbec.com.ar {
+    redir /pos /pos/ 308
+
+    handle_path /pos/* {
+        root * /var/www/pos
+        file_server
+    }
+
     reverse_proxy erp:8501 {
         header_up Host {host}
         header_up X-Real-IP {remote_host}
