@@ -248,6 +248,11 @@ def generar_etiqueta_frontal_oficial(
     font_arco = ImageFont.truetype("C:\\Windows\\Fonts\\arialbd.ttf", 36)
     render_curved_text_top(clean_img, texto_arco_superior, font_arco, radius=405, center_x=512, center_y=512, letter_spacing=1.3)
 
+    # Línea curva a modo de subrayado del arco superior
+    r_line = 368
+    box = [512 - r_line, 512 - r_line, 512 + r_line, 512 + r_line]
+    draw.arc(box, start=201, end=339, fill="black", width=3)
+
     if output_path:
         clean_img.save(output_path, quality=98, dpi=(300, 300))
     return clean_img

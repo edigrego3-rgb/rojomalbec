@@ -65,18 +65,20 @@ Toda etiqueta trasera debe seguir estrictamente la jerarquía visual del **Patr�
 ## 3. Anatomía de la Etiqueta Frontal Oficial
 
 1. **Arco Superior:** Tipo de sal y origen geográfico en `Arial Bold` con radio 405 (ej: `SAL MARINA DE AUTOR · TRASLASIERRA`).
-2. **Bloque de Marca:**  
+2. **Línea Curva de Subrayado:** Arco concéntrico negro fino (3 px, radio 368 px) que enmarca y subraya simétricamente todo el arco de texto superior, separándolo del bloque de marca.
+3. **Bloque de Marca:**  
    `Rojo Malbec`  
    `SALES & BLENDS DE ESPECIAS Y TÉS`
-3. **Nombre Protagonista + Descriptor:**  
+4. **Nombre Protagonista + Descriptor:**  
    `SAL AL MALBEC`  
    `& TÉ AHUMADO`  
    *(Lapsang Souchong)*  
    `CON HONGOS DEL BOSQUE, PUERRO Y PIMIENTA LARGA`
-4. **Ilustración Botánica de Autor:**  
+5. **Ilustración Botánica de Autor:**  
    Grabado botánico vintage de los ingredientes reales (copa de vino, hongos, uvas, puerro, hebras de té, pimienta larga) sobre fondo blanco puro `#FFFFFF`.
-5. **Sello Artesanal:** `HECHO A MANO` (doble anillo rústico con inclinación sobre la izquierda).
-6. **Arco Inferior:** `IND. ARG. 100g` (Sales) o `IND. ARG. 50g` (Blends), con tipografía cursiva serif en arco inferior natural.
+6. **Sello Artesanal:** `HECHO A MANO` (doble anillo rústico con inclinación sobre la izquierda).
+7. **Arco Inferior:** `IND. ARG. 100g` (Sales) o `IND. ARG. 50g` (Blends), con tipografía cursiva serif en arco inferior natural.
+
 
 ---
 
