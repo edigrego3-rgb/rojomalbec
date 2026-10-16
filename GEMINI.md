@@ -57,7 +57,13 @@ C:\Proyectos\rojomalbec\
    Si devuelve algo, frenar inmediatamente.
 2. **Google Sheets:**  
    La base de datos es la planilla "RojoMalbec DB". En el ERP, `load_data` NUNCA debe llevar `@st.cache_data` para evitar pisar ventas en mostrador/POS. La apertura de la planilla se optimiza con `@st.cache_resource` y las cargas iniciales se hacen en batch (`values_batch_get`).
-3. **Flujo de Deploy al VPS:**  
-   Cuando se aprueban cambios de código:
-   - Se commitean y suben a GitHub (`main`).
-   - En el VPS se corre `git pull origin main` y `docker compose up -d --build <servicio>`.
+3. **Protocolo Obligatorio de Deploy Automático (CI/CD Local -> VPS):**  
+   Cada vez que Antigravity / Gemini realice modificaciones en el código de cualquiera de los proyectos:
+   - **Verificación de Seguridad:** Ejecutar el chequeo de secretos antes de commitear.
+   - **Commit y Push:** Subir a GitHub en `main` con mensaje descriptivo en español.
+   - **Deploy en los Tres Servicios:** Conectarse vía SSH al VPS Hetzner (`ssh root@2.31.10.225`) y ejecutar:
+     ```bash
+     cd /root/rojomalbec && git pull origin main && docker compose up -d --build erp distribuidor preventa
+     ```
+   - **Verificación de Estado:** Confirmar que los 3 contenedores (`rojomalbec_erp`, `rojomalbec_distribuidor`, `rojomalbec_preventa`) queden levantados y saludables (*healthy*).
+   - Este ciclo es obligatorio y automático al finalizar cada requerimiento o ajuste de código, sin requerir recordatorio del usuario.
