@@ -1,91 +1,87 @@
 ---
 name: etiquetas-gourmet
-description: Guía y generador automatizado de etiquetas circulares frontales y traseras de autor para frascos y productos de Rojo Malbec según normativa visual y legal de la marca.
+description: Guía, especificación técnica y generador automatizado de etiquetas circulares de 3 pulgadas (frontales y traseras) para frascos y sales/blends de autor de Rojo Malbec.
 ---
 
-# Skill: Diseño y Generación de Etiquetas Gourmet – Rojo Malbec
+# Skill: Diseño y Fabricación de Etiquetas Gourmet – Rojo Malbec
 
-Este skill estandariza la producción gráfica de etiquetas circulares (frontales y traseras) para tapas y frascos de Rojo Malbec en Los Hornillos, Traslasierra, Córdoba.
-
----
-
-## 1. Identidad Visual y Estándar Geométrico
-
-- **Formato:** Círculo perfecto de **1000 x 1000 px** (apto para impresión a 300 DPI).
-- **Fondo:** **Blanco puro (`#FFFFFF`)** sobre papel adhesivo o vinilo blanco.
-- **Marco Exterior:** Doble anillo concéntrico negro pleno:
-  - Anillo 1 (exterior): Margen `20 px`, grosor `5 px`.
-  - Anillo 2 (interior): Margen `36 px`, grosor `8 px`.
-- **Tipografías estándar de Windows:**
-  - Principal / Títulos: *Times New Roman Bold* (`C:\Windows\Fonts\timesbd.ttf`).
-  - Subtítulos / Bajadas: *Times New Roman Italic* (`C:\Windows\Fonts\timesi.ttf`).
-  - Textos descriptivos / Legales: *Times New Roman Regular* (`C:\Windows\Fonts\times.ttf`).
+Este skill estandariza la producción gráfica de etiquetas circulares de autor para frascos y tapas de Rojo Malbec en Los Hornillos, Traslasierra, Córdoba.
 
 ---
 
-## 2. Anatomía de la Etiqueta Trasera
+## 1. Especificaciones Físicas y de Imprenta (Reglas Innegociables)
 
-1. **Arco Curvo Superior:**  
-   `PRODUCTO ARTESANAL · TRASLASIERRA` (Radio 392 px, letra curvada en arco de 180°).
-2. **Bloque Ingredientes:**  
-   `INGREDIENTES:` en negrita.  
-   Lista de botánicos separados por puntos medios (`·`), en orden decreciente de peso según fórmula ANMAT/CAA del ERP.
-3. **Separador Ornamental:**  
-   Filete victoriano simétrico con volutas y hojas en el centro.
-4. **Nombre Protagonista:**  
-   Nombre de la receta en mayúsculas negrita contundente (1 o 2 líneas).  
-   Subtítulo explicativo en cursiva entre paréntesis (ej: *(Sabores de Japón)* o *(Sal Marina con Té Ahumado y Hongos)*).
-5. **Segundo Separador Ornamental.**
-6. **Sugerencias y Modo de Uso:**  
-   `SUGERENCIAS:` en negrita + maridajes recomendados.  
-   `MODO DE USO:` en negrita + técnica de aplicación culinaria.
-7. **Leyenda Legal de Sales (Solo si es Sal):**  
-   `Sal entrefina enriquecida para uso alimentario según Ley Nac. N°17259`
-8. **Pie de Contacto y Código QR:**  
-   - Código QR a la izquierda (110x110 px) apuntando a `https://www.rojomalbec.com.ar`.
-   - Bloque de texto a la derecha:
-     - **Rojo Malbec Sales & Blends** (Bold)
+- **Medida Física Real:** **3 pulgadas de diámetro exactas (76,2 mm / 3.0")**.
+- **Resolución de Imprenta:** **300 DPI mínimo** (900 x 900 px netos, o 1024 x 1024 px a escala).
+- **Fondo:** **Blanco puro (`#FFFFFF`)**, sin sombras, viñetas ni tonalidades cremas artificiales (apto para impresión directa sobre papel blanco autoadhesivo o vinilo).
+- **Encuadre Geométrico:** Dos aros concéntricos negros de trazo limpio:
+  - Aro 1 (exterior): Margen perimetral fino.
+  - Aro 2 (interior): Grosor más marcado, equidistante y concéntrico.
+
+---
+
+## 2. Anatomía de la Contraetiqueta (Etiqueta Trasera Oficial)
+
+Toda etiqueta trasera debe seguir estrictamente la jerarquía visual del **Patrón Oro Oficial** (`tools/etiquetas/assets/patron_oro_trasera_sal_malbec_te_ahumado.png`):
+
+1. **Arco Curvo Superior:**
+   - Texto: `PRODUCTO ARTESANAL · TRASLASIERRA`
+   - Tipografía: Palo seco bold (`Arial Bold`), curvada a lo largo del semicírculo superior.
+   - **Regla de Aire:** Debe mantener espacio libre y NUNCA tocar la línea del aro negro ni los textos inferiores.
+
+2. **Bloque Ingredientes y Leyenda Legal:**
+   - `INGREDIENTES:` (en negrita condensada).
+   - Lista de ingredientes en orden decreciente de peso (según receta oficial ANMAT/CAA del ERP).
+   - Al pie del bloque de ingredientes (4° renglón):  
+     `Sal Marina entrefina enriquecida para uso alimentario según ley N 17259` *(solo en sales)*.
+   - **Regla de Espaciado:** El bloque debe respirar; ningún lateral debe tocar el arco curvo superior.
+
+3. **Separador Ornamental Superior:**
+   - Arabesco victoriano simétrico oficial (`tools/etiquetas/assets/arabesco_victoriano.png`).
+
+4. **Nombre del Producto (Protagonista):**
+   - Tipografía: **Serif Condensada de autor**, en **UNA SOLA LÍNEA HORIZONTAL COMPLETA** (ej: `SAL AL MALBEC & TÉ AHUMADO`).  
+     *No dividir en dos líneas.* Si el nombre es largo, condensar proporcionalmente el ancho (73%–75%).
+   - Subtítulo en cursiva/itálica elegante entre paréntesis: `(Lapsang Souchong)`.
+
+5. **Separador Ornamental Inferior:**
+   - Mismo arabesco invertido verticalmente.
+
+6. **Bloque Continuo de Sugerencias y Modo de Uso:**
+   - Disposición en bloque compacto continuo de 3 líneas para no saturar el espacio vertical de las 3 pulgadas:  
+     `SUGERENCIAS: [Maridajes recomendados]. MODO DE USO: [Técnica culinaria de aplicación]. Sal de cocción.`
+   - Tipografía: Palo seco condensado (`Arial Narrow Bold`), perfectamente legible en el frasco físico.
+
+7. **Pie de Trazabilidad (Código QR + Contacto):**
+   - A la izquierda: **Código QR cuadrado** (apuntando a `https://www.rojomalbec.com.ar`).
+   - A la derecha:
+     - **Rojo Malbec Sales & Blends**
      - Los Hornillos, Córdoba
      - Tel: 3544308380
      - www.rojomalbec.com.ar
 
 ---
 
-## 3. Anatomía de la Etiqueta Frontal
+## 3. Anatomía de la Etiqueta Frontal Oficial
 
-1. **Arco Curvo Superior:**  
-   Familia o procedencia del blend (ej: `SAL MARINA INFUSIONADA EN MALBEC` o `ESPECIAS TRADICIONALES DE JAPÓN`).
+1. **Arco Superior:** Familia o tipo de sal (ej: `SAL CULINARIA DE COCCIÓN` o `SAL MARINA INFUSIONADA EN MALBEC`).
 2. **Bloque de Marca:**  
    `Rojo Malbec`  
    `SALES & BLENDS DE ESPECIAS Y TÉS`
-3. **Nombre del Producto + Bajada:**  
-   Tipografía bold con serifa + breve descriptor (ej: `BLEND CON VINO MALBEC`).
-4. **Ilustración Botánica Central:**  
-   Grabado botánico vintage de los ingredientes clave.
-5. **Sello Artesanal (Abajo a la izquierda):**  
-   Doble círculo rústico inclinado con la leyenda `HECHO A MANO`.
-6. **Arco Curvo Inferior:**  
-   `IND. ARG. 100g` (Sales) o `IND. ARG. 50g` (Blends) en letra itálica.
+3. **Nombre Protagonista + Descriptor:**  
+   `SAL AL MALBEC & TÉ AHUMADO` *(Lapsang Souchong)*  
+   `CON HONGOS DEL BOSQUE, PUERRO Y PIMIENTA LARGA`
+4. **Ilustración Botánica de Autor:**  
+   Grabado botánico vintage de los ingredientes reales (copa de vino, hongos, puerro, hebras de té, pimienta larga).
+5. **Sello Artesanal:** `HECHO A MANO` (doble anillo rústico con inclinación).
+6. **Arco Inferior:** `IND. ARG. 100g` (Sales) o `IND. ARG. 50g` (Blends).
 
 ---
 
-## 4. Generador Automatizado en Python
+## 4. Archivos de Referencia y Patrón Oro
 
-El módulo oficial está disponible en:
-`tools/etiquetas/generador_etiquetas.py`
-
-### Ejemplo de uso rápido:
-```python
-from tools.etiquetas.generador_etiquetas import generar_etiqueta_trasera_oficial
-
-generar_etiqueta_trasera_oficial(
-    nombre_linea_1="SAL AL MALBEC",
-    nombre_linea_2="& TÉ AHUMADO",
-    subtitulo="(Sal Marina con Té Ahumado y Hongos)",
-    ingredientes_texto="Sal marina entrefina · Vino malbec · Té ahumado Lapsang Souchong · Puerro deshidratado · Hongo de pino patagónico · Shiitake · Pimienta larga",
-    sugerencias_texto="Carnes asadas, vegetales a la parrilla, cordero, hamburguesas gourmet, guisos y papas rústicas.",
-    modo_uso_texto="Espolvorear durante la cocción o al finalizar el sellado para potenciar aromas ahumados y notas umami.",
-    es_sal=True,
-    output_path="etiqueta_trasera.png"
-)
-```
+- **Patrón Oro Trasero Oficial:** `tools/etiquetas/assets/patron_oro_trasera_sal_malbec_te_ahumado.png`
+- **Arabesco Oficial:** `tools/etiquetas/assets/arabesco_victoriano.png`
+- **Generador Oficial:** `tools/etiquetas/generador_etiquetas.py`
+- **Salida para el Usuario:** Siempre exportar con resolución calibrada a 3 pulgadas al Escritorio:  
+  `C:\Users\Eduardo\Desktop\Etiqueta_Trasera_[Nombre_Producto]_OFICIAL.png`
