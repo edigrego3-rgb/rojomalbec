@@ -238,5 +238,11 @@ const catalogo_data = [
         "Nombre": "DRY HOT HONEY",
         "Precio_Mayorista": 4200,
         "Precio_Venta": 12000
+    },
+    {
+        "Codigo": "L SMTA",
+        "Nombre": "SAL AL MALBEC & TÉ AHUMADO",
+        "Precio_Mayorista": 7000,
+        "Precio_Venta": 8000
     }
 ];
