@@ -62,21 +62,64 @@ MAP_CODIGOS_POS = {
     "te pu-erh rojo malbec": "RM-TEA-PUE",
     "rooibos ambar": "RM-TEA-ROO",
     "rooibos : ambar africano": "RM-TEA-ROO",
+    "sal al malbec & te ahumado": "RM-SAL-MTA",
+    "sal al malbec & té ahumado": "RM-SAL-MTA",
+    "sal al malbec y te ahumado": "RM-SAL-MTA",
+    "sal al malbec y té ahumado": "RM-SAL-MTA",
     "te verde del zoco": "RM-TEA-ZOC",
     "te karak": "RM-TEA-KAR",
     "cacao y zest": "RM-TEA-CAC"
 }
 
+def normalizar_nombre_producto(texto):
+    import unicodedata
+    s = str(texto).lower().replace("&", " y ")
+    s = "".join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+    return " ".join(s.split())
+
+def auto_generar_codigo_pos(nombre):
+    """Genera automáticamente un código POS oficial RM-CAT-XXX según la categoría del producto."""
+    if not nombre or pd.isna(nombre):
+        return "RM-GEN-001"
+    n_norm = normalizar_nombre_producto(nombre)
+    if "sal" in n_norm:
+        cat = "SAL"
+    elif "pimienta" in n_norm:
+        cat = "PIM"
+    elif "vital" in n_norm:
+        cat = "VIT"
+    elif "te " in n_norm or n_norm.startswith("te ") or "rooibos" in n_norm or "cacao" in n_norm:
+        cat = "TEA"
+    else:
+        cat = "BLE"
+    import re
+    palabras = re.findall(r'\w+', n_norm.upper())
+    ignore = ["DE", "DEL", "AL", "CON", "Y", "A", "LA", "LAS", "EL", "LOS", "TIPO", "SAL", "PIMIENTA", "VITAL", "TE"]
+    sig = [p for p in palabras if p not in ignore]
+    if not sig:
+        suf = palabras[0][:3] if palabras else "GEN"
+    elif len(sig) == 1:
+        suf = sig[0][:3]
+    elif len(sig) == 2:
+        suf = (sig[0][:2] + sig[1][0])[:3]
+    else:
+        suf = "".join([p[0] for p in sig[:3]])
+    return f"RM-{cat}-{suf}".upper()
+
 def obtener_codigo_vendedor(codigo_actual, nombre_producto):
     """Obtiene el código de barra oficial para vendedores/POS en formato RM-XXX-YYY."""
     if codigo_actual and str(codigo_actual).startswith("RM-"):
         return str(codigo_actual).strip()
-    nom_clean = " ".join(str(nombre_producto).lower().split())
-    if nom_clean in MAP_CODIGOS_POS:
-        return MAP_CODIGOS_POS[nom_clean]
+    nom_clean = normalizar_nombre_producto(nombre_producto)
+    for k, v in MAP_CODIGOS_POS.items():
+        if normalizar_nombre_producto(k) == nom_clean:
+            return v
+    # Si codigo_actual ya es un código de barras válido (y no un lote interno tipo 'L ...' o 'SINC')
     if codigo_actual and str(codigo_actual).strip() != "" and str(codigo_actual).lower() != "nan":
-        return str(codigo_actual).strip()
-    return auto_generar_codigo(nombre_producto)
+        cod_clean = str(codigo_actual).strip()
+        if not cod_clean.startswith("L ") and cod_clean != "SINC":
+            return cod_clean
+    return auto_generar_codigo_pos(nombre_producto)
 
 def generar_codigo_barras_html(codigo_texto, nombre_producto=""):
     """Genera la imagen HTML del código de barras en formato Code128 (Estándar POS Vendedor)."""

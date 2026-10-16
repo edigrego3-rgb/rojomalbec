@@ -516,9 +516,15 @@ def auto_generar_codigo(nombre):
     elif len(significant) == 1:
         # Solo una palabra significativa
         prefix = significant[0][:4]
-    else:
+    elif len(significant) == 2:
         # Primera letra de la primera + primeras 3 de la segunda significativa
         prefix = significant[0][0] + significant[1][:3]
+    elif len(significant) == 3:
+        # Primera letra de la primera + primeras 2 de la segunda + primera de la tercera
+        prefix = significant[0][0] + significant[1][:2] + significant[2][0]
+    else:
+        # 4 o más palabras significativas: inicial de cada una (hasta 4 letras)
+        prefix = "".join([p[0] for p in significant[:4]])
         
     return f"L {prefix}".strip()
 

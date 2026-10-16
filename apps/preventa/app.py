@@ -244,8 +244,16 @@ MAP_CODIGOS_POS = {
     'pimienta verde': 'RM-PIM-VER', 'pimienta verde de autor': 'RM-PIM-VER', 'te pu-erh': 'RM-TEA-PUE',
     'te pu erh': 'RM-TEA-PUE', 'te pu-erh rojo malbec': 'RM-TEA-PUE', 'rooibos ambar': 'RM-TEA-ROO',
     'rooibos : ambar africano': 'RM-TEA-ROO', 'te verde del zoco': 'RM-TEA-ZOC', 'te karak': 'RM-TEA-KAR',
-    'cacao y zest': 'RM-TEA-CAC'
+    'cacao y zest': 'RM-TEA-CAC',
+    'sal al malbec & te ahumado': 'RM-SAL-MTA', 'sal al malbec & té ahumado': 'RM-SAL-MTA',
+    'sal al malbec y te ahumado': 'RM-SAL-MTA', 'sal al malbec y té ahumado': 'RM-SAL-MTA'
 }
+
+def normalizar_nombre_prod(texto):
+    import unicodedata
+    s = str(texto).lower().replace("&", " y ")
+    s = "".join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+    return " ".join(s.split())
 
 def auto_generar_codigo(nombre):
     palabras = str(nombre).strip().upper().split()
@@ -256,9 +264,14 @@ def auto_generar_codigo(nombre):
 
 def obtener_codigo_vendedor(codigo_actual, nombre_producto):
     if codigo_actual and str(codigo_actual).startswith('RM-'): return str(codigo_actual).strip()
-    nom_clean = ' '.join(str(nombre_producto).lower().split())
-    if nom_clean in MAP_CODIGOS_POS: return MAP_CODIGOS_POS[nom_clean]
-    if codigo_actual and str(codigo_actual).strip() != '' and str(codigo_actual).lower() != 'nan': return str(codigo_actual).strip()
+    nom_norm = normalizar_nombre_prod(nombre_producto)
+    for k, v in MAP_CODIGOS_POS.items():
+        if normalizar_nombre_prod(k) == nom_norm:
+            return v
+    if codigo_actual and str(codigo_actual).strip() != '' and str(codigo_actual).lower() != 'nan':
+        cod_clean = str(codigo_actual).strip()
+        if not cod_clean.startswith("L ") and cod_clean != "SINC":
+            return cod_clean
     return auto_generar_codigo(nombre_producto)
 
 def detectar_categoria(nombre):
