@@ -192,3 +192,63 @@ def generar_etiqueta_trasera_oficial(
     if output_path:
         img.save(output_path, quality=98)
     return img
+
+def generar_etiqueta_frontal_oficial(
+    src_front_path=None,
+    texto_arco_superior="SAL MARINA DE AUTOR · TRASLASIERRA",
+    output_path=None
+):
+    """
+    Genera la Etiqueta Frontal Oficial de 3 pulgadas (76.2 mm) a 300 DPI (1024x1024 px).
+    Elimina el fondo crema a blanco puro #FFFFFF, reemplaza el arco superior y sincroniza
+    los anillos concéntricos exactos con la etiqueta trasera.
+    """
+    import numpy as np
+    
+    if src_front_path is None:
+        src_front_path = r"C:\Users\Eduardo\Desktop\imagenes\Etiquetas\Etiquetas\Sales\Sal al Malbec y Te Lompsang\Etiqueta_FRENTE_Sal_Malbec_Te_Ahumado.jpg"
+        
+    orig = Image.open(src_front_path).convert("RGB")
+    arr = np.array(orig, dtype=np.float32)
+
+    # Balance de punto blanco para fondo blanco puro #FFFFFF sin perder colores de ilustración
+    scale = np.array([255.0 / 236.0, 255.0 / 226.0, 255.0 / 198.0], dtype=np.float32)
+    adjusted = np.clip(arr * scale, 0, 255).astype(np.uint8)
+
+    diff = np.max(adjusted, axis=2) - np.min(adjusted, axis=2)
+    is_near_white = (adjusted[:,:,0] >= 238) & (adjusted[:,:,1] >= 238) & (adjusted[:,:,2] >= 238) & (diff < 20)
+    adjusted[is_near_white] = [255, 255, 255]
+
+    y_coords, x_coords = np.ogrid[:1024, :1024]
+    r_coords = np.sqrt((x_coords - 512.0)**2 + (y_coords - 512.0)**2)
+
+    # Limpiar perímetro exterior fuera de radio 430
+    adjusted[r_coords > 430] = [255, 255, 255]
+
+    # Máscara quirúrgica para borrar el arco superior previo sin tocar el bloque de marca
+    mask_top = (r_coords >= 330) & (r_coords <= 435) & (y_coords <= 260)
+    mask_side_left = (x_coords <= 310) & (y_coords <= 295) & (r_coords >= 280) & (r_coords <= 435)
+    mask_side_right = (x_coords >= 715) & (y_coords <= 295) & (r_coords >= 280) & (r_coords <= 435)
+    mask_mid_left = (x_coords <= 230) & (y_coords <= 365) & (r_coords >= 300) & (r_coords <= 435)
+    mask_mid_right = (x_coords >= 790) & (y_coords <= 365) & (r_coords >= 300) & (r_coords <= 435)
+
+    adjusted[mask_top | mask_side_left | mask_side_right | mask_mid_left | mask_mid_right] = [255, 255, 255]
+
+    clean_img = Image.fromarray(adjusted)
+    draw = ImageDraw.Draw(clean_img)
+
+    # Dos anillos oficiales idénticos a la trasera
+    size = 1024
+    m1 = 20
+    draw.ellipse([m1, m1, size - m1, size - m1], outline="black", width=5)
+    m2 = 36
+    draw.ellipse([m2, m2, size - m2, size - m2], outline="black", width=9)
+
+    # Arco superior curvado oficial
+    font_arco = ImageFont.truetype("C:\\Windows\\Fonts\\arialbd.ttf", 36)
+    render_curved_text_top(clean_img, texto_arco_superior, font_arco, radius=405, center_x=512, center_y=512, letter_spacing=1.3)
+
+    if output_path:
+        clean_img.save(output_path, quality=98, dpi=(300, 300))
+    return clean_img
+
