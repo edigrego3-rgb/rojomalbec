@@ -519,7 +519,10 @@ def render_recetas_tab():
                 st.caption("Espacio exclusivo para fotos de etiquetas, procesos o notas de esta receta.")
                 
                 # Definir ruta de la carpeta para esta receta
-                base_docs_path = os.path.join("I:\\Mi unidad\\RojoMalbec_App", "receta_docs")
+                if os.path.exists(r"I:\Mi unidad\RojoMalbec_App"):
+                    base_docs_path = os.path.join(r"I:\Mi unidad\RojoMalbec_App", "receta_docs")
+                else:
+                    base_docs_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "receta_docs")
                 recipe_docs_path = os.path.join(base_docs_path, str(int(rid)))
                 
                 if not os.path.exists(recipe_docs_path):
