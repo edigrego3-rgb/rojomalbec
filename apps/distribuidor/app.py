@@ -23,7 +23,7 @@ def load_config():
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, "r") as f:
             return json.load(f)
-    return {"min_compra": 300000, "envio_gratis": 350000}
+    return {"min_compra": 60000, "envio_gratis": 150000}
 
 def save_config(cfg):
     with open(CONFIG_FILE, "w") as f:
