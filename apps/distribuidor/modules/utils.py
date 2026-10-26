@@ -27,6 +27,7 @@ def extraer_descripcion(nombre_blend, filepath="Descripciones_RojoMalbec.md"):
         elif "rooibos" in nombre_buscar: nombre_buscar = "rooibos"
         elif "limon" in nombre_buscar and "chile" in nombre_buscar: nombre_buscar = "lim"
         elif "espa" in nombre_buscar and "profunda" in nombre_buscar: nombre_buscar = "profunda"
+        elif "ahumado" in nombre_buscar or "lapsang" in nombre_buscar: nombre_buscar = "sal al malbec & te ahumado"
         elif "malbec" in nombre_buscar: nombre_buscar = "sal al malbec"
         elif "british" in nombre_buscar: nombre_buscar = "sal british"
         elif "desierto" in nombre_buscar: nombre_buscar = "sal del desierto"

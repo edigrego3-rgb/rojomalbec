@@ -40,6 +40,41 @@ No es para cualquier asado. Es para cuando querés lucirte. Pedí tu lata y dale
 📦 Envase 100g · Hecho a mano · Producto artesanal · Traslasierra 🌐 rojomalbec.com.ar
 ---
 
+## Sal al Malbec & Té Ahumado 🍷🔥
+
+🔥 Sal Marina de Autor | El Humo del Bosque y la Sangre del Vino en tus Fuegos
+
+No es una sal ahumada industrial ni tiene saborizantes artificiales. Es una sal de cocción rústica y elegante, diseñada para transformar un corte a las brasas o un guisado de olla en una experiencia de alta cocina a leña.
+
+🌲 El Secreto del Sabor (Alquimia Botánica)
+
+Partimos de cristales de sal marina entrefina infusionados en reducción de vino Malbec, y los ensamblamos con auténticas hebras de Té Negro Lapsang Souchong (secadas ancestralmente sobre humo de maderas de pino).
+
+Para redondear la fórmula, sumamos una bomba natural de umami silvestre: hongos de pino patagónicos y shiitake, el dulzor suave del puerro y el picor cálido y especiado de la pimienta larga. Todo madura durante 48 horas en reposo hermético para que cada cristal absorba el perfume del humo noble y el vino.
+
+🥩 Modo de Uso (¿Cómo sacarle el máximo provecho?)
+
+A diferencia de las sales de terminación, esta es una Sal de Cocción concebida para el calor y el fuego:
+
+En Carnes a la Parrilla o Plancha: Aplicala generosamente sobre la carne cruda 15 a 30 minutos antes de llevarla al fuego (o durante el sellado a fuego vivo). La humedad propia del corte rehidrata los hongos y despierta los aceites del té ahumado, formando una costra dorada, crujiente y llena de sabor al tocar los fierros.
+
+En Olla de Hierro o Disco: Sumá 1 o 2 cucharadas al momento de dorar las carnes y el sofrito. Le aporta al plato ese sabor profundo de haber sido cocinado durante horas sobre brasas de leña.
+
+🍴 ¿En qué usarla? (Maridajes Estrella)
+
+Cortes Vacunos y Cordero: Ojo de bife, costillar, vacío, entraña, cordero al asador o bondiola braseada.
+
+Guisados y Estofados: Ragú, lentejas, carbonadas y carnes a la cacerola.
+
+Vegetales al Rescoldo: Portobellos grillados, calabazas y cebollas asadas.
+
+Tip del Chef (Manteca Ahumada): Mezclá una cucharada de esta sal con 100g de manteca pomada, armá un rollito en frío y poné una rodaja sobre un bife recién salido de la parrilla. Es un viaje de ida.
+
+**🌿 Ingredientes:** Sal Marina al Malbec, Puerro Deshidratado, Té Negro Ahumado (Lapsang Souchong), Hongos de Pino Patagónico, Pimienta Larga, Hongo Shiitake
+
+📦 Envase 100g · Hecho a mano · Producto artesanal · Traslasierra 🌐 rojomalbec.com.ar
+---
+
 ## Sal British 🇬🇧
 
 🍺 Sal Marina Tipo British | La Experiencia del Pub en tu Casa

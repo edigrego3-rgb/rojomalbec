@@ -41,6 +41,7 @@ def buscar_imagenes(nombre_producto):
         
     term = nombre_producto.lower()
     if "sloopy joe" in term or "sloppy" in term: term = "sloppyjoe"
+    elif "te ahumado" in term or "té ahumado" in term or "lapsang" in term: term = "salmalbecteahumado"
     elif "sal al malbec" in term: term = "malbec"
     elif "sal negra" in term or "hawaiana" in term: term = "hawaiana"
     elif "ajo a las hierbas" in term: term = "ajohierbas"

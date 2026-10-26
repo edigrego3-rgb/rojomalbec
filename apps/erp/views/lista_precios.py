@@ -97,6 +97,8 @@ def generar_excel_mayorista(df_input):
 CATALOGO_DESCRIPCIONES = {
     # === SALES ===
     "sal al malbec": "Cristales de sal marina en reduccion de Malbec. Final elegante para carnes rojas y quesos anejos.",
+    "sal al malbec y te ahumado": "Cristales marinos en reduccion de Malbec con te Lapsang Souchong ahumado en lena de pino, hongos del bosque, puerro y pimienta larga. Sal de coccion para carnes a las brasas y ollas.",
+    "sal al malbec & te ahumado": "Cristales marinos en reduccion de Malbec con te Lapsang Souchong ahumado en lena de pino, hongos del bosque, puerro y pimienta larga. Sal de coccion para carnes a las brasas y ollas.",
     "sal british": "Sal marina infusionada en vinagre. El toque clasico para pescados, patatas fritas y vegetales.",
     "sal de hierbas ahumadas": "Aroma de fogones del sur. Ideal para carnes , legumbres y sopas rusticas.",
     "sal de limon y chile": "Frescura y fuego. Esencial para pescados, mariscos, ceviches, Aves o escarchar copas.",
