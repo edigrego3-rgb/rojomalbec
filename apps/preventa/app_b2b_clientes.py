@@ -21,8 +21,11 @@ st.set_page_config(
 CONFIG_FILE = os.path.join(current_dir, "config_b2b.json")
 def load_config():
     if os.path.exists(CONFIG_FILE):
-        with open(CONFIG_FILE, "r") as f:
-            return json.load(f)
+        try:
+            with open(CONFIG_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
     return {"min_compra": 60000, "envio_gratis": 150000}
 
 def save_config(cfg):
