@@ -96,9 +96,9 @@ df_cat = load_catalog_data()
 if not df_cat.empty:
     df_cat = df_cat[df_cat["Visible_B2B"].astype(str).str.upper().isin(["1", "TRUE", "SI", "SÍ"])]
     df_cat["Categoria"] = "Otros"
-    df_cat.loc[df_cat["Nombre"].str.contains("Sal ", case=False, na=False), "Categoria"] = "Sales"
-    df_cat.loc[df_cat["Nombre"].str.contains("Pimienta", case=False, na=False), "Categoria"] = "Pimientas"
     df_cat.loc[df_cat["Nombre"].str.contains("Te |Té |Rooibos", case=False, na=False), "Categoria"] = "Tés"
+    df_cat.loc[df_cat["Nombre"].str.contains("Pimienta", case=False, na=False), "Categoria"] = "Pimientas"
+    df_cat.loc[df_cat["Nombre"].str.contains("Sal ", case=False, na=False), "Categoria"] = "Sales"
     
     mask_blends = ~df_cat["Categoria"].isin(["Sales", "Pimientas", "Tés"])
     df_cat.loc[mask_blends, "Categoria"] = "Blends"

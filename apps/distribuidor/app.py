@@ -156,9 +156,9 @@ def modal_venta(nombre, img_front, descripcion, pvp_redondeado, costo_redondeado
 # CARGAR DATOS
 df_catalogo = load_catalog_data()
 df_catalogo["Categoria"] = "Otros"
-df_catalogo.loc[df_catalogo["Nombre"].str.contains("Sal ", case=False, na=False), "Categoria"] = "Sales"
-df_catalogo.loc[df_catalogo["Nombre"].str.contains("Pimienta", case=False, na=False), "Categoria"] = "Pimientas"
 df_catalogo.loc[df_catalogo["Nombre"].str.contains("Te |Té |Rooibos", case=False, na=False), "Categoria"] = "Tés"
+df_catalogo.loc[df_catalogo["Nombre"].str.contains("Pimienta", case=False, na=False), "Categoria"] = "Pimientas"
+df_catalogo.loc[df_catalogo["Nombre"].str.contains("Sal ", case=False, na=False), "Categoria"] = "Sales"
 mask_blends = ~df_catalogo["Categoria"].isin(["Sales", "Pimientas", "Tés"])
 df_catalogo.loc[mask_blends, "Categoria"] = "Blends"
 
